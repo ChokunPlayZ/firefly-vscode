@@ -1,0 +1,67 @@
+{
+  "name": "firefly-vscode",
+  "displayName": "firefly-vscode",
+  "description": "a vscode extension that allows you to upload python code directly to firefly-compateble device (makeblock python mainboards) and allow user to fetch and update firmware without using mblock",
+  "version": "1.0.2",
+  "author": "Chokun Rojanapron",
+  "publisher": "chokunplayz",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": ["onLanguage:python"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "firefly.uploadFile",
+        "title": "Upload File",
+        "category": "Firefly Util"
+      },
+      {
+        "command": "firefly.device.connect",
+        "title": "Connect to device",
+        "category": "Firefly Device Util"
+      },
+      {
+        "command": "firefly.device.disconnect",
+        "title": "Disconnect from device",
+        "category": "Firefly Device Util"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "editorLangId == python",
+          "command": "firefly.uploadFile",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "serialport": "^12.0.0"
+  }
+}
